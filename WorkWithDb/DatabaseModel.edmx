@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище ModCompDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище ModCompDBModel1" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Experiment">
           <Key>
             <PropertyRef Name="Id_ex" />
@@ -16,7 +16,7 @@
           <Property Name="Descr" Type="nvarchar(max)" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
-предупреждение 6013: Первичный ключ в таблице или представлении "ModCompDB.dbo.GAS_Scene" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+предупреждение 6013: Первичный ключ в таблице или представлении "ModCompDB_NEW.dbo.GAS_Scene" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
         <EntityType Name="GAS_Scene">
           <Property Name="Id_Gas" Type="int" />
           <Property Name="Id_Sceen" Type="int" />
@@ -26,17 +26,20 @@
             <PropertyRef Name="Id_mod" />
           </Key>
           <Property Name="Id_mod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Type" Type="nchar" MaxLength="40" />
-          <Property Name="Name" Type="nchar" MaxLength="40" />
-          <Property Name="Autor" Type="nchar" MaxLength="50" />
-          <Property Name="Designer" Type="nchar" MaxLength="40" />
+          <Property Name="TypeID" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Autor" Type="nvarchar(max)" />
+          <Property Name="Designer" Type="nvarchar(max)" />
           <Property Name="DateUp" Type="date" />
-          <Property Name="Descr" Type="nvarchar" MaxLength="200" />
-          <Property Name="Path_FullDescr" Type="nchar" MaxLength="100" />
-          <Property Name="Path_Exec" Type="nchar" MaxLength="100" />
+          <Property Name="Descr" Type="nvarchar(max)" />
+          <Property Name="Path_FullDescr" Type="nvarchar(max)" />
+          <Property Name="Path_Exec" Type="nvarchar(max)" />
+          <Property Name="Type_Proj" Type="nvarchar" MaxLength="50" />
+          <Property Name="Path_Proj" Type="nvarchar(max)" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
-предупреждение 6013: Первичный ключ в таблице или представлении "ModCompDB.dbo.Ojects_Scene" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+предупреждение 6013: Первичный ключ в таблице или представлении "ModCompDB_NEW.dbo.Ojects_Scene" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
         <EntityType Name="Ojects_Scene">
           <Property Name="Id_cs" Type="int" />
           <Property Name="Id_object" Type="int" />
@@ -94,11 +97,11 @@
           <Property Name="Id_exp" Type="int" />
           <Property Name="Id_scene" Type="int" />
           <Property Name="Type_mod" Type="nchar" MaxLength="40" />
-          <Property Name="Name" Type="nchar" MaxLength="40" />
-          <Property Name="Path_exe" Type="nchar" MaxLength="100" />
+          <Property Name="Name" Type="nchar" MaxLength="100" />
+          <Property Name="Path_exe" Type="nvarchar(max)" />
           <Property Name="Startt" Type="datetime" />
           <Property Name="Endt" Type="datetime" />
-          <Property Name="Descr" Type="varchar" MaxLength="200" />
+          <Property Name="Descr" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -110,7 +113,38 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityContainer Name="Хранилище ModCompDBModelContainer">
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Хранилище ModCompDBModel1Container">
           <EntitySet Name="Experiment" EntityType="Self.Experiment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Scene" EntityType="Self.Scene" Schema="dbo" store:Type="Tables" />
@@ -124,7 +158,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ModCompDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ModCompDBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Experiment">
           <Key>
             <PropertyRef Name="Id_ex" />
@@ -140,14 +174,17 @@
             <PropertyRef Name="Id_mod" />
           </Key>
           <Property Name="Id_mod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Type" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-          <Property Name="Autor" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Designer" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="TypeID" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Autor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Designer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateUp" Type="DateTime" Precision="0" />
-          <Property Name="Descr" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Path_FullDescr" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="Path_Exec" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Descr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Path_FullDescr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Path_Exec" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type_Proj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Path_Proj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Scene">
           <Key>
@@ -202,11 +239,11 @@
           <Property Name="Id_exp" Type="Int32" />
           <Property Name="Id_scene" Type="Int32" />
           <Property Name="Type_mod" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-          <Property Name="Path_exe" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Path_exe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Startt" Type="DateTime" Precision="3" />
           <Property Name="Endt" Type="DateTime" Precision="3" />
-          <Property Name="Descr" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -227,15 +264,45 @@
           <EntitySet Name="Sprav_Objects" EntityType="Self.Sprav_Objects" />
           <EntitySet Name="Step_Model" EntityType="Self.Step_Model" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ModCompDBModelContainer" CdmEntityContainer="ModCompDBEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModCompDBModel1Container" CdmEntityContainer="ModCompDBEntities">
           <EntitySetMapping Name="Experiment">
-            <EntityTypeMapping TypeName="ModCompDBModel.Experiment">
+            <EntityTypeMapping TypeName="ModCompDBModel1.Experiment">
               <MappingFragment StoreEntitySet="Experiment">
                 <ScalarProperty Name="Id_ex" ColumnName="Id_ex" />
                 <ScalarProperty Name="Name_ex" ColumnName="Name_ex" />
@@ -246,9 +313,10 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Model">
-            <EntityTypeMapping TypeName="ModCompDBModel.Model">
+            <EntityTypeMapping TypeName="ModCompDBModel1.Model">
               <MappingFragment StoreEntitySet="Model">
                 <ScalarProperty Name="Id_mod" ColumnName="Id_mod" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Autor" ColumnName="Autor" />
@@ -257,11 +325,13 @@
                 <ScalarProperty Name="Descr" ColumnName="Descr" />
                 <ScalarProperty Name="Path_FullDescr" ColumnName="Path_FullDescr" />
                 <ScalarProperty Name="Path_Exec" ColumnName="Path_Exec" />
+                <ScalarProperty Name="Type_Proj" ColumnName="Type_Proj" />
+                <ScalarProperty Name="Path_Proj" ColumnName="Path_Proj" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Scene">
-            <EntityTypeMapping TypeName="ModCompDBModel.Scene">
+            <EntityTypeMapping TypeName="ModCompDBModel1.Scene">
               <MappingFragment StoreEntitySet="Scene">
                 <ScalarProperty Name="Id_sc" ColumnName="Id_sc" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -273,7 +343,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sprav_Acva">
-            <EntityTypeMapping TypeName="ModCompDBModel.Sprav_Acva">
+            <EntityTypeMapping TypeName="ModCompDBModel1.Sprav_Acva">
               <MappingFragment StoreEntitySet="Sprav_Acva">
                 <ScalarProperty Name="Id_acv" ColumnName="Id_acv" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -283,7 +353,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sprav_GAS">
-            <EntityTypeMapping TypeName="ModCompDBModel.Sprav_GAS">
+            <EntityTypeMapping TypeName="ModCompDBModel1.Sprav_GAS">
               <MappingFragment StoreEntitySet="Sprav_GAS">
                 <ScalarProperty Name="Id_GAS" ColumnName="Id_GAS" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -298,7 +368,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sprav_Objects">
-            <EntityTypeMapping TypeName="ModCompDBModel.Sprav_Objects">
+            <EntityTypeMapping TypeName="ModCompDBModel1.Sprav_Objects">
               <MappingFragment StoreEntitySet="Sprav_Objects">
                 <ScalarProperty Name="Id_obj" ColumnName="Id_obj" />
                 <ScalarProperty Name="Symbol_id" ColumnName="Symbol_id" />
@@ -310,7 +380,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Step_Model">
-            <EntityTypeMapping TypeName="ModCompDBModel.Step_Model">
+            <EntityTypeMapping TypeName="ModCompDBModel1.Step_Model">
               <MappingFragment StoreEntitySet="Step_Model">
                 <ScalarProperty Name="Id_step" ColumnName="Id_step" />
                 <ScalarProperty Name="Id_exp" ColumnName="Id_exp" />
@@ -325,7 +395,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ModCompDBModel.sysdiagrams">
+            <EntityTypeMapping TypeName="ModCompDBModel1.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -335,6 +405,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище ModCompDBModel1.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище ModCompDBModel1.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище ModCompDBModel1.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище ModCompDBModel1.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище ModCompDBModel1.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище ModCompDBModel1.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище ModCompDBModel1.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

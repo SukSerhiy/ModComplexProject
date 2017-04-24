@@ -15,6 +15,7 @@ namespace WorkWithDb
     public partial class Model
     {
         public int Id_mod { get; set; }
+        public Nullable<int> TypeID { get; set; }
         public string Type { get; set; }
         public string Name { get; set; }
         public string Autor { get; set; }
@@ -23,5 +24,7 @@ namespace WorkWithDb
         public string Descr { get; set; }
         public string Path_FullDescr { get; set; }
         public string Path_Exec { get; set; }
+        public string Type_Proj { get; set; }
+        public string Path_Proj { get; set; }
     }
 }

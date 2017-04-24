@@ -18,8 +18,8 @@ namespace ModComplexProject.Controllers
         public ActionResult Index()
         {
             Select s = new Select("Model");
-            IEnumerable<string> headers = s.getHeaders();
-            IEnumerable<IEnumerable<string>> data = s.getData();
+            var headers = s.getHeaders();
+            var data = s.getData();
             return View("Index", new Table { headers = headers, data = data });
         }
 
@@ -27,8 +27,8 @@ namespace ModComplexProject.Controllers
         public void Index(string updateStringJson)
         {
             var js = new JavaScriptSerializer();
-            Model[] model_Arr = js.Deserialize<Model[]>(updateStringJson);
-            foreach (Model m in model_Arr)
+            var model_Arr = js.Deserialize<Model[]>(updateStringJson);
+            foreach (var m in model_Arr)
             {
                 Update.UpdateModel(m);
             }

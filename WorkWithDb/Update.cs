@@ -49,7 +49,7 @@ namespace WorkWithDb
 
         public static void UpdateModel(Model m)
         {
-            string sql = string.Format("UPDATE Model SET Type='{0}', Name='{1}', Autor='{2}', Designer='{3}', DateUp='{4}', Descr='{5}', Path_FullDescr='{6}', Path_Exec='{7}' WHERE Id_GAS='{8}'", m.Type, m.Name, m.Autor, m.Designer, m.DateUp, m.Descr, m.Path_FullDescr, m.Path_Exec, m.Id_mod);
+            string sql = string.Format("UPDATE Model SET Type='{0}', TypeID={1} Name='{2}', Autor='{3}', Designer='{4}', DateUp='{5}', Descr='{6}', Path_FullDescr='{7}', Path_Exec='{8}', Type_Proj='{9}' Path_Proj='{10}' WHERE Id_GAS='{11}'", m.Type, m.TypeID, m.Name, m.Autor, m.Designer, m.DateUp, m.Descr, m.Path_FullDescr, m.Path_Exec, m.Type_Proj, m.Path_Proj, m.Id_mod);
             using (SqlCommand cmd = new SqlCommand(sql, connection))
             {
                 cmd.ExecuteNonQuery();

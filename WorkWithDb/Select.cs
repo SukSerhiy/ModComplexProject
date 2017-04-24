@@ -47,7 +47,7 @@ namespace WorkWithDb
 
         }
 
-        public IEnumerable<string> getHeaders()
+        public List<string> getHeaders()
         {
             List<string> headers = new List<string>();
             using (SqlDataReader reader = getDataReader())
@@ -61,11 +61,9 @@ namespace WorkWithDb
                 }
                 return headers;
             }
-
-
         }
 
-        public IEnumerable<IEnumerable<string>> getData()
+        public List<List<string>> getData()
         {
             using (SqlDataReader reader = getDataReader())
             {
@@ -81,8 +79,6 @@ namespace WorkWithDb
                 }
                 return data;
             }
-
-
         }
     }
 }

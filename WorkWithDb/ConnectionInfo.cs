@@ -15,7 +15,7 @@ namespace WorkWithDb
 
         static ConnectionInfo()
         {
-            connectionString = @"Data Source =(LocalDB)\MSSQLLocalDB;Initial Catalog=ModCompDB; Integrated Security=True";
+            connectionString = @"Data Source =(LocalDB)\MSSQLLocalDB;Initial Catalog=ModCompDB_NEW; Integrated Security=True";
         }
     }
 }

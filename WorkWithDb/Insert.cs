@@ -12,7 +12,7 @@ namespace WorkWithDb
     {
         static SqlConnection connection = null;
 
-        static Insert()
+        Insert()
         {
             string conStr = ConnectionInfo.connectionString;
             connection = new SqlConnection(conStr);
@@ -48,7 +48,7 @@ namespace WorkWithDb
 
         public static void InsertModel(Model m)
         {
-            string sql = string.Format("INSERT INTO Model(Type, Name, Autor, Designer, DateUp, Descr, Path_FullDescr, Path_Exec) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', {6})", m.Type, m.Name, m.Autor, m.Designer, m.DateUp, m.Descr, m.Path_FullDescr, m.Path_Exec);
+            string sql = string.Format("INSERT INTO Model(Type, TypeID, Name, Autor, Designer, DateUp, Descr, Path_FullDescr, Path_Exec, Type_Proj, Path_Proj) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', {6}, {7}, {8}, {9})", m.Type, m.TypeID, m.Name, m.Autor, m.Designer, m.DateUp, m.Descr, m.Path_FullDescr, m.Path_Exec, m.Type_Proj, m.Path_Proj);
             using (SqlCommand cmd = new SqlCommand(sql, connection))
             {
                 cmd.ExecuteNonQuery();

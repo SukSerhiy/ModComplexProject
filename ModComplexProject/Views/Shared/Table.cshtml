@@ -27,35 +27,33 @@
     <table>
         <thead>
             <tr>
-                @foreach (string head in Model.headers)
+                @for (int i = 0; i < Model.headers.Count; i++)
                 {
-                    if (head == Model.headers.First())
+                    if (Model.skipIndexes.Contains(i))
                     {
-                        <td style="display: none">@head</td>
+                        <td class="hidden">@Model.headers[i]</td>
                     }
                     else
                     {
-                        <td>@head</td>
+                        <td>@Model.headers[i]</td>
                     }
-
                 }
             </tr>
         </thead>
         <tbody>
-            @foreach (IEnumerable<string> dataRow in Model.data)
+            @foreach (IList<string> dataRow in Model.data)
             {
                 <tr>
-                    @foreach (string dataCell in dataRow)
+                    @for (int i = 0; i < dataRow.Count; i++)
                     {
-                        if (dataCell == dataRow.First())
+                        if (Model.skipIndexes.Contains(i))
                         {
-                            <td style="display: none">@dataCell</td>
+                            <td name="@Model.headers[i]" class="hidden">@dataRow[i]</td>
                         }
                         else
                         {
-                            <td>@dataCell</td>
+                            <td name="@Model.headers[i]">@dataRow[i]</td>
                         }
-
                     }
                 </tr>
             }

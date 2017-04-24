@@ -23,8 +23,8 @@ namespace ModComplexProject.Controllers
         public ActionResult WaterReference()
         {
             Select s = new Select("Sprav_acva");
-            IEnumerable<string> headers = s.getHeaders();
-            IEnumerable<IEnumerable<string>> data = s.getData();
+            var headers = s.getHeaders();
+            var data = s.getData();
             ViewData["Table"] = new Table { headers = headers, data = data };
             return View("WaterReference");
         }
@@ -36,15 +36,15 @@ namespace ModComplexProject.Controllers
         [HttpPost]
         public void WaterReference(string updateStringJson)
         {
-            IEnumerable<string> keys = new Select("Sprav_acva").getData().Select(s => s.First());
+            var keys = new Select("Sprav_acva").getData().Select(s => s.First());
             var js = new JavaScriptSerializer();
-            Sprav_Acva[] sprav_Acva_Arr = js.Deserialize<Sprav_Acva[]>(updateStringJson);
+            var sprav_Acva_Arr = js.Deserialize<Sprav_Acva[]>(updateStringJson);
 
-            foreach(Sprav_Acva s in sprav_Acva_Arr.Where(s => keys.Contains("" + s.Id_acv)))
+            foreach(var s in sprav_Acva_Arr.Where(s => keys.Contains("" + s.Id_acv)))
             {
                 Update.UpdateSprav_Acva(s);
             }
-            foreach(Sprav_Acva s in sprav_Acva_Arr.Where(s => !keys.Contains("" + s.Id_acv)))
+            foreach(var s in sprav_Acva_Arr.Where(s => !keys.Contains("" + s.Id_acv)))
             {
                 Insert.InsertSprav_Acva(s);
             }
@@ -57,8 +57,8 @@ namespace ModComplexProject.Controllers
         public ActionResult GASReference()
         {
             Select s = new Select("Sprav_GAS");
-            IEnumerable<string> headers = s.getHeaders();
-            IEnumerable<IEnumerable<string>> data = s.getData();
+            var headers = s.getHeaders();
+            var data = s.getData();
             ViewData["Table"] = new Table { headers = headers, data = data };
             return View("GASReference");
         }
@@ -70,15 +70,15 @@ namespace ModComplexProject.Controllers
         [HttpPost]
         public void GASReference(string updateStringJson)
         {
-            IEnumerable<string> keys = new Select("Sprav_GAS").getData().Select(s => s.First());
+            var keys = new Select("Sprav_GAS").getData().Select(s => s.First());
             var js = new JavaScriptSerializer();
-            Sprav_GAS[] sprav_Acva_Arr = js.Deserialize<Sprav_GAS[]>(updateStringJson);
+            var sprav_Acva_Arr = js.Deserialize<Sprav_GAS[]>(updateStringJson);
 
-            foreach (Sprav_GAS s in sprav_Acva_Arr.Where(s => keys.Contains("" + s.Id_GAS)))
+            foreach (var s in sprav_Acva_Arr.Where(s => keys.Contains("" + s.Id_GAS)))
             {
                 Update.UpdateSprav_GAS(s);
             }
-            foreach (Sprav_GAS s in sprav_Acva_Arr.Where(s => !keys.Contains("" + s.Id_GAS)))
+            foreach (var s in sprav_Acva_Arr.Where(s => !keys.Contains("" + s.Id_GAS)))
             {
                 Insert.InsertSprav_GAS(s);
             }
@@ -91,8 +91,8 @@ namespace ModComplexProject.Controllers
         public ActionResult ObjectsReference()
         {
             Select s = new Select("Sprav_Objects");
-            IEnumerable<string> headers = s.getHeaders();
-            IEnumerable<IEnumerable<string>> data = s.getData();
+            var headers = s.getHeaders();
+            var data = s.getData();
             ViewData["Table"] = new Table { headers = headers, data = data };
             return View("ObjectsReference");
         }
@@ -104,7 +104,7 @@ namespace ModComplexProject.Controllers
         [HttpPost]
         public void ObjectsReference(string updateStringJson)
         {
-            IEnumerable<string> keys = new Select("Sprav_Objects").getData().Select(s => s.First());
+            var keys = new Select("Sprav_Objects").getData().Select(s => s.First());
             var js = new JavaScriptSerializer();
             Sprav_Objects[] sprav_Acva_Arr = js.Deserialize<Sprav_Objects[]>(updateStringJson);
 
