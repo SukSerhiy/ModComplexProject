@@ -1,0 +1,21 @@
+﻿<html>
+<head>
+    <title></title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    
+</head>
+<body>
+    @Html.Partial("Menu")
+
+    <div class="container body-content">
+        @RenderBody()
+        <footer></footer>
+    </div>
+    
+<script src='@Url.Content("~/Scripts/jquery-1.12.4.min.js")' type="text/javascript"></script>
+    
+
+<script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

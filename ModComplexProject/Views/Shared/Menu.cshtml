@@ -1,0 +1,109 @@
+﻿<head>
+    <style>
+        a{
+            color: dodgerblue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">Главная</a>
+        </div>
+        <!----Меню-->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav nav-justified">
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Эксперимент</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            @Html.ActionLink("Регистрация эксперимента", "", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Регистрация сцены", "", "Home")
+                        </li>
+                        <li>
+                            <a href="CheckGIS:">Формирование сцены</a>
+                        </li>
+                        <li>
+                            @Html.ActionLink("Формирование сценария", "", "Home")
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Генерация сигнала</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="MATLAB_R2009a:">Геометрический метод</a>
+                        </li>
+                        <li>
+                            <a href="NWM:">Волновой метод</a>
+                        </li>
+                        <li>
+                            <a href="WaveConstructor:">Воспроизведение</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Выделение сигнала</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            @Html.ActionLink("БПП", "", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Фильтрация", "", "Home")
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Классификация объекта</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            @Html.ActionLink("Векторно-фазовый метод", "", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Метод нормальных волн", "", "Home")
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Идентификация объекта</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            @Html.ActionLink("Аналитический метод", "", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Метод ИИ", "", "Home")
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="~/ModelManagement">Управление моделями</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Справочники</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            @Html.ActionLink("Акваторий", "WaterReference", "References")
+                        </li>
+                        <li>
+                            @Html.ActionLink("ГАС", "GASReference", "References")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Объектов", "ObjectsReference", "References")
+                        </li>
+
+                    </ul>
+                </li>
+                <li><a href="">Онтология</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div>
+</nav>

@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ModCompDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Experiment">
+          <Key>
+            <PropertyRef Name="Id_ex" />
+          </Key>
+          <Property Name="Id_ex" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_ex" Type="nchar" MaxLength="10" />
+          <Property Name="Autor_ex" Type="nchar" MaxLength="10" />
+          <Property Name="DatReg" Type="date" />
+          <Property Name="Descr" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "ModCompDB.dbo.GAS_Scene" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="GAS_Scene">
+          <Property Name="Id_Gas" Type="int" />
+          <Property Name="Id_Sceen" Type="int" />
+        </EntityType>-->
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="Id_mod" />
+          </Key>
+          <Property Name="Id_mod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nchar" MaxLength="40" />
+          <Property Name="Name" Type="nchar" MaxLength="40" />
+          <Property Name="Autor" Type="nchar" MaxLength="50" />
+          <Property Name="Designer" Type="nchar" MaxLength="40" />
+          <Property Name="DateUp" Type="date" />
+          <Property Name="Descr" Type="nvarchar" MaxLength="200" />
+          <Property Name="Path_FullDescr" Type="nchar" MaxLength="100" />
+          <Property Name="Path_Exec" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "ModCompDB.dbo.Ojects_Scene" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="Ojects_Scene">
+          <Property Name="Id_cs" Type="int" />
+          <Property Name="Id_object" Type="int" />
+        </EntityType>-->
+        <EntityType Name="Scene">
+          <Key>
+            <PropertyRef Name="Id_sc" />
+          </Key>
+          <Property Name="Id_sc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="40" />
+          <Property Name="Id_exp" Type="int" />
+          <Property Name="Id_acvatorii" Type="int" />
+          <Property Name="DataReg" Type="date" />
+          <Property Name="Descr" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Sprav_Acva">
+          <Key>
+            <PropertyRef Name="Id_acv" />
+          </Key>
+          <Property Name="Id_acv" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Region" Type="varchar" MaxLength="15" />
+          <Property Name="Descr" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Sprav_GAS">
+          <Key>
+            <PropertyRef Name="Id_GAS" />
+          </Key>
+          <Property Name="Id_GAS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="10" />
+          <Property Name="Ent_num" Type="nchar" MaxLength="15" />
+          <Property Name="Coord_X" Type="real" />
+          <Property Name="Coord_Y" Type="real" />
+          <Property Name="Coord_Z" Type="real" />
+          <Property Name="Lat" Type="real" />
+          <Property Name="Long" Type="real" />
+          <Property Name="Depth" Type="real" />
+        </EntityType>
+        <EntityType Name="Sprav_Objects">
+          <Key>
+            <PropertyRef Name="Id_obj" />
+          </Key>
+          <Property Name="Id_obj" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Symbol_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="Class_obj" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vid_obj" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type_obj" Type="nvarchar" MaxLength="50" />
+          <Property Name="Descr" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Step_Model">
+          <Key>
+            <PropertyRef Name="Id_step" />
+          </Key>
+          <Property Name="Id_step" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_exp" Type="int" />
+          <Property Name="Id_scene" Type="int" />
+          <Property Name="Type_mod" Type="nchar" MaxLength="40" />
+          <Property Name="Name" Type="nchar" MaxLength="40" />
+          <Property Name="Path_exe" Type="nchar" MaxLength="100" />
+          <Property Name="Startt" Type="datetime" />
+          <Property Name="Endt" Type="datetime" />
+          <Property Name="Descr" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityContainer Name="Хранилище ModCompDBModelContainer">
+          <EntitySet Name="Experiment" EntityType="Self.Experiment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Scene" EntityType="Self.Scene" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sprav_Acva" EntityType="Self.Sprav_Acva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sprav_GAS" EntityType="Self.Sprav_GAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sprav_Objects" EntityType="Self.Sprav_Objects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Step_Model" EntityType="Self.Step_Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModCompDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Experiment">
+          <Key>
+            <PropertyRef Name="Id_ex" />
+          </Key>
+          <Property Name="Id_ex" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_ex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Autor_ex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DatReg" Type="DateTime" Precision="0" />
+          <Property Name="Descr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="Id_mod" />
+          </Key>
+          <Property Name="Id_mod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="Autor" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Designer" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="DateUp" Type="DateTime" Precision="0" />
+          <Property Name="Descr" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Path_FullDescr" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Path_Exec" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Scene">
+          <Key>
+            <PropertyRef Name="Id_sc" />
+          </Key>
+          <Property Name="Id_sc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="Id_exp" Type="Int32" />
+          <Property Name="Id_acvatorii" Type="Int32" />
+          <Property Name="DataReg" Type="DateTime" Precision="0" />
+          <Property Name="Descr" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Sprav_Acva">
+          <Key>
+            <PropertyRef Name="Id_acv" />
+          </Key>
+          <Property Name="Id_acv" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Region" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Descr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Sprav_GAS">
+          <Key>
+            <PropertyRef Name="Id_GAS" />
+          </Key>
+          <Property Name="Id_GAS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Ent_num" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="Coord_X" Type="Single" />
+          <Property Name="Coord_Y" Type="Single" />
+          <Property Name="Coord_Z" Type="Single" />
+          <Property Name="Lat" Type="Single" />
+          <Property Name="Long" Type="Single" />
+          <Property Name="Depth" Type="Single" />
+        </EntityType>
+        <EntityType Name="Sprav_Objects">
+          <Key>
+            <PropertyRef Name="Id_obj" />
+          </Key>
+          <Property Name="Id_obj" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Symbol_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Class_obj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vid_obj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type_obj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Descr" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Step_Model">
+          <Key>
+            <PropertyRef Name="Id_step" />
+          </Key>
+          <Property Name="Id_step" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_exp" Type="Int32" />
+          <Property Name="Id_scene" Type="Int32" />
+          <Property Name="Type_mod" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="Path_exe" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Startt" Type="DateTime" Precision="3" />
+          <Property Name="Endt" Type="DateTime" Precision="3" />
+          <Property Name="Descr" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="ModCompDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Experiment" EntityType="Self.Experiment" />
+          <EntitySet Name="Model" EntityType="Self.Model" />
+          <EntitySet Name="Scene" EntityType="Self.Scene" />
+          <EntitySet Name="Sprav_Acva" EntityType="Self.Sprav_Acva" />
+          <EntitySet Name="Sprav_GAS" EntityType="Self.Sprav_GAS" />
+          <EntitySet Name="Sprav_Objects" EntityType="Self.Sprav_Objects" />
+          <EntitySet Name="Step_Model" EntityType="Self.Step_Model" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModCompDBModelContainer" CdmEntityContainer="ModCompDBEntities">
+          <EntitySetMapping Name="Experiment">
+            <EntityTypeMapping TypeName="ModCompDBModel.Experiment">
+              <MappingFragment StoreEntitySet="Experiment">
+                <ScalarProperty Name="Id_ex" ColumnName="Id_ex" />
+                <ScalarProperty Name="Name_ex" ColumnName="Name_ex" />
+                <ScalarProperty Name="Autor_ex" ColumnName="Autor_ex" />
+                <ScalarProperty Name="DatReg" ColumnName="DatReg" />
+                <ScalarProperty Name="Descr" ColumnName="Descr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Model">
+            <EntityTypeMapping TypeName="ModCompDBModel.Model">
+              <MappingFragment StoreEntitySet="Model">
+                <ScalarProperty Name="Id_mod" ColumnName="Id_mod" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+                <ScalarProperty Name="Designer" ColumnName="Designer" />
+                <ScalarProperty Name="DateUp" ColumnName="DateUp" />
+                <ScalarProperty Name="Descr" ColumnName="Descr" />
+                <ScalarProperty Name="Path_FullDescr" ColumnName="Path_FullDescr" />
+                <ScalarProperty Name="Path_Exec" ColumnName="Path_Exec" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Scene">
+            <EntityTypeMapping TypeName="ModCompDBModel.Scene">
+              <MappingFragment StoreEntitySet="Scene">
+                <ScalarProperty Name="Id_sc" ColumnName="Id_sc" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id_exp" ColumnName="Id_exp" />
+                <ScalarProperty Name="Id_acvatorii" ColumnName="Id_acvatorii" />
+                <ScalarProperty Name="DataReg" ColumnName="DataReg" />
+                <ScalarProperty Name="Descr" ColumnName="Descr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sprav_Acva">
+            <EntityTypeMapping TypeName="ModCompDBModel.Sprav_Acva">
+              <MappingFragment StoreEntitySet="Sprav_Acva">
+                <ScalarProperty Name="Id_acv" ColumnName="Id_acv" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Descr" ColumnName="Descr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sprav_GAS">
+            <EntityTypeMapping TypeName="ModCompDBModel.Sprav_GAS">
+              <MappingFragment StoreEntitySet="Sprav_GAS">
+                <ScalarProperty Name="Id_GAS" ColumnName="Id_GAS" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Ent_num" ColumnName="Ent_num" />
+                <ScalarProperty Name="Coord_X" ColumnName="Coord_X" />
+                <ScalarProperty Name="Coord_Y" ColumnName="Coord_Y" />
+                <ScalarProperty Name="Coord_Z" ColumnName="Coord_Z" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Depth" ColumnName="Depth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sprav_Objects">
+            <EntityTypeMapping TypeName="ModCompDBModel.Sprav_Objects">
+              <MappingFragment StoreEntitySet="Sprav_Objects">
+                <ScalarProperty Name="Id_obj" ColumnName="Id_obj" />
+                <ScalarProperty Name="Symbol_id" ColumnName="Symbol_id" />
+                <ScalarProperty Name="Class_obj" ColumnName="Class_obj" />
+                <ScalarProperty Name="Vid_obj" ColumnName="Vid_obj" />
+                <ScalarProperty Name="Type_obj" ColumnName="Type_obj" />
+                <ScalarProperty Name="Descr" ColumnName="Descr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Step_Model">
+            <EntityTypeMapping TypeName="ModCompDBModel.Step_Model">
+              <MappingFragment StoreEntitySet="Step_Model">
+                <ScalarProperty Name="Id_step" ColumnName="Id_step" />
+                <ScalarProperty Name="Id_exp" ColumnName="Id_exp" />
+                <ScalarProperty Name="Id_scene" ColumnName="Id_scene" />
+                <ScalarProperty Name="Type_mod" ColumnName="Type_mod" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Path_exe" ColumnName="Path_exe" />
+                <ScalarProperty Name="Startt" ColumnName="Startt" />
+                <ScalarProperty Name="Endt" ColumnName="Endt" />
+                <ScalarProperty Name="Descr" ColumnName="Descr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ModCompDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

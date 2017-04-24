@@ -1,0 +1,102 @@
+﻿body{
+     background-color: rgb(225, 225, 192);
+ }
+
+#success{
+    width: 575px;
+    height: 77px;
+    border: 2px solid green;
+    background-color: rgb(180, 247, 168);
+    text-align: center;
+    font-size: large;
+    color: darkgreen;
+    padding-top: 30px;
+    margin-top: -20px;
+    display: none;
+    position: absolute;
+    z-index:100;
+}
+
+#error{
+    width: 575px;
+    height: 77px;
+    border: 2px solid red;
+    background-color: rgb(255, 174, 174);
+    text-align: center;
+    font-size: large;
+    color: red;
+    padding-top: 30px;
+    margin-top: -20px;
+    display: none;
+    position: absolute;
+    z-index:100;
+}
+
+
+input:not(:first-of-type), textarea {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+div { border-radius: 10px; }
+
+#tableContainer {
+    overflow-x: scroll;
+    overflow-y: scroll;
+    max-height: 50%;
+    padding-left: 0px;
+    width: 99%;
+    background-color: white;
+}
+
+td {
+    padding: 3px;
+}
+        
+#updateDB {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: large;
+}
+
+#updateDbContainer{
+    width: 99%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+        
+#formContainer{
+    border: 2px inset grey;
+    padding: 10px;
+    background-color: rgb(225, 225, 192);
+}
+
+.input-container{
+    margin-bottom: 10px;
+}
+
+ #activateModel{
+     margin-left: 18px;  
+ }
+
+ #typeSelectedList{
+     width: 216px;
+ }
+
+        
+ #typeLabel {
+     width: 60px;
+ }
+
+        
+ input[name^='Path'] {
+     margin-left: 15px;
+     width: 556px;
+ }
+
+ #showModelDescr{
+     font-size: small;
+     margin-bottom: 10px;
+ }

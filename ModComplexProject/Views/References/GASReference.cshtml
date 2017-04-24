@@ -1,0 +1,130 @@
+﻿@model WorkWithDb.Sprav_GAS
+
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/forms.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        var myUrl = '@Url.Content("~/References/GASReference")';
+    </script>
+    <script src='@Url.Content("~/Scripts/jquery-1.12.4.min.js")' type="text/javascript"></script>
+    <script src="~/Scripts/ModComplex/updatingData.js" type="text/javascript"></script>
+</head>
+<body>
+    @Html.Partial("SavingToDbResult")
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <h3>Учетная карта ГАС</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12" id="tableContainer">
+                        @Html.Partial("Table", ViewData["Table"])
+                    </div>
+                    <div class="col-md-12" id="updateDbContainer">
+                        <button name="updateDB" type="button" class="btn btn-default btn-md btn-block" id="updateDB">Сохранить изменения в БД</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12" id="formContainer">
+                        <form>
+                            @Html.HiddenFor(m => m.Id_GAS, new { id = "Id" })
+                            <div class="row">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Ent_num, "Учетный номер", new { @class = "col-sm-2 control-label" })
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(m => m.Ent_num, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Type, "Тип номер", new { @class = "col-sm-2 control-label" })
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(m => m.Type, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="row col-sm-12">
+                                        <div class="col-sm-6">
+                                            @Html.Label("Decart", "Декартовы координаты", new { @class = "control-label" })
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="row col-sm-12">
+
+                                                        <div class="col-sm-1">
+                                                            @Html.LabelFor(m => m.Coord_X, "X", new { @class = "control-label" })
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            @Html.TextBoxFor(m => m.Coord_X, null, new { @class = "form-control" })
+                                                        </div>
+
+                                                        <div class="col-sm-1">
+                                                            @Html.LabelFor(m => m.Coord_Y, "Y", new { @class = "control-label" })
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            @Html.TextBoxFor(m => m.Coord_Y, null, new { @class = "form-control" })
+                                                        </div>
+
+                                                        <div class="col-sm-1">
+                                                            @Html.LabelFor(m => m.Coord_Z, "Z", new { @class = "control-label" })
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            @Html.TextBoxFor(m => m.Coord_Z, null, new { @class = "form-control" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            @Html.Label("Geograph", "Географические координаты", new { @class = "control-label" })
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="row col-sm-12">
+
+                                                        <div class="col-sm-3">
+                                                            @Html.LabelFor(m => m.Lat, "Широта", new { @class = "control-label" })
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            @Html.TextBoxFor(m => m.Lat, null, new { @class = "form-control" })
+                                                        </div>
+
+                                                        <div class="col-sm-3">
+                                                            @Html.LabelFor(m => m.Long, "Долгота", new { @class = "control-label" })
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            @Html.TextBoxFor(m => m.Long, null, new { @class = "form-control" })
+                                                        </div>
+
+                                                        <div class="col-sm-3">
+                                                            @Html.LabelFor(m => m.Depth, "Глубина", new { @class = "control-label" })
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            @Html.TextBoxFor(m => m.Depth, null, new { @class = "form-control" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @Html.Partial("ButtonPanel")
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

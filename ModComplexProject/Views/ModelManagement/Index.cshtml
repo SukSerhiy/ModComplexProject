@@ -1,0 +1,155 @@
+﻿@model ModComplexProject.Models.Table
+
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/forms.css" rel="stylesheet" type="text/css" />
+    <style>
+        #activateModel{
+            margin-left: 18px;
+        }
+
+        #typeSelectedList{
+            width: 216px;
+        }
+
+        #typeLabel {
+            width: 60px;
+        }
+
+        input[name^='Path'] {
+            margin-left: 15px;
+            width: 556px;
+        }
+
+        #showModelDescr{
+            font-size: small;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        var myUrl = '@Url.Content("~/ModelManagement")';
+    </script>
+    <script src='@Url.Content("~/Scripts/jquery-1.12.4.min.js")' type="text/javascript"></script>
+    <script src="~/Scripts/ModComplex/updatingData.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <h3>Учетная карта моделей</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12" id="tableContainer">
+                        @Html.Partial("Table", Model)
+                    </div>
+                    <div class="col-md-12" id="updateDbContainer">
+                        <button type="button" class="btn btn-default btn-md btn-block" id="updateDB" style="padding: 10px;">Сохранить изменения в БД</button>
+                    </div>
+                    <div id="forResult">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12" id="formContainer">
+                        <form>
+                            @Html.Hidden("Id_mod", "", new { id = "Id" })
+
+                            <div class="row">
+                                <div class="col-sm-6"></div>
+                                <div class="form-group">
+                                    @Html.Label("Type", "Тип", new { @class = "col-sm-2 control-label", id="typeLabel" })
+                                    @Html.DropDownList("Type", new SelectList(new string[] { "Выделение_сигнала",
+                                                                                             "Классификация_объекта",
+                                                                                             "Комбинированая"
+                                    }), "Генерация_сигнала", new { @class= "form-control input-container", id="typeSelectedList" })
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="form-group">
+                                    @Html.Label("Name", "Название", new { @class = "col-sm-2 control-label" })
+                                    <div class="col-sm-10">
+                                        @Html.TextBox("Name", null, new { @class = "form-control input-container" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    @Html.Label("Autor", "Авторы", new { @class = "col-sm-2 control-label" })
+                                    <div class="col-sm-10">
+                                        @Html.TextBox("Autor", null, new { @class = "form-control input-container" })
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="form-group">
+                                    @Html.Label("Designer", "Разработчик", new { @class = "col-sm-2 control-label" })
+                                    <div class="col-sm-10">
+                                        @Html.TextBox("Designer", null, new { @class = "form-control input-container" })
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="form-group">
+                                    @Html.Label("DateUp", "Дата изменения", new { @class = "col-sm-2 control-label" })
+                                    <div class="col-sm-10">
+                                        @Html.TextBox("DateUp", null, new { @class = "form-control input-container" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    @Html.Label("Descr", "Описание", new { @class = "col-sm-2 control-label" })
+                                    <div class="col-sm-10 input-container">
+                                        @Html.TextArea("Descr", null, 10, 45, new { @class = "form-control input-container" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="row col-sm-10">
+                                        @Html.Label("Path_FullDescr", "Путь к полному описанию", new { @class = "col-sm-12 control-label" })
+                                    </div>
+                                    
+                                    <div class="row col-sm-10">
+                                        @Html.TextBox("Path_FullDescr", null, new { @class = "form-control input-container" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="row col-sm-6">
+                                        @Html.Label("Path_Exec", "Путь к исполнимому файлу", new { @class = "col-sm-12 control-label" })
+                                    </div>
+                                    <div class="row col-sm-6">
+                                        <button id="showModelDescr">Просмотр описания модели</button>
+                                    </div>
+
+                                    <div class="row col-sm-10">
+                                        @Html.TextBox("Path_Exec", null, new { @class = "form-control input-container" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            @Html.Partial("ButtonPanel")
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,66 @@
+﻿@model ModComplexProject.Models.Table
+    <head>
+        <style>
+            tbody tr:hover {
+                cursor: pointer;
+            }
+
+            table, tr, td {
+                border: 1px solid;
+                height: 30px;
+            }
+
+            tbody tr:hover{
+                background-color:rgb(230, 230, 164);
+            }
+
+            thead {
+                background-color: lightgrey;
+            }
+
+            .selectedRow{
+                background-color:rgb(218, 218, 120);
+            }
+        </style>
+    </head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                @foreach (string head in Model.headers)
+                {
+                    if (head == Model.headers.First())
+                    {
+                        <td style="display: none">@head</td>
+                    }
+                    else
+                    {
+                        <td>@head</td>
+                    }
+
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (IEnumerable<string> dataRow in Model.data)
+            {
+                <tr>
+                    @foreach (string dataCell in dataRow)
+                    {
+                        if (dataCell == dataRow.First())
+                        {
+                            <td style="display: none">@dataCell</td>
+                        }
+                        else
+                        {
+                            <td>@dataCell</td>
+                        }
+
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+
+
