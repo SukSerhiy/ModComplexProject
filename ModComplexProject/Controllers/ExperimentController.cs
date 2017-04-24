@@ -9,9 +9,16 @@ using WorkWithDb;
 
 namespace ModComplexProject.Controllers
 {
+    /// <summary>
+    /// Menu item "Эксперимент"
+    /// </summary>
+    /// <returns></returns>
     public class ExperimentController : Controller
     {
-        //Регистрация экспиримента
+        /// <summary>
+        /// Menu item "Регистрация эксперимента"
+        /// </summary>
+        /// <returns></returns>
         public ActionResult RegisterExperiment()
         {
             Select s = new Select("Experiment");
@@ -21,6 +28,10 @@ namespace ModComplexProject.Controllers
             return View("RegisterExperiment");
         }
 
+        /// <summary>
+        /// Menu item "Регистрация эксперимента". Updating the DB table
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public void RegisterExperiment(string updateStringJson)
         {
@@ -38,7 +49,10 @@ namespace ModComplexProject.Controllers
             }
         }
 
-        //Регистрация сцены
+        /// <summary>
+        /// Menu item "Регистрация сцены"
+        /// </summary>
+        /// <returns></returns>
         public ActionResult RegisterScene()
         {
             Select s = new Select("Experiment");
@@ -48,6 +62,10 @@ namespace ModComplexProject.Controllers
             return View("RegisterExperiment");
         }
 
+        /// <summary>
+        /// Menu item "Регистрация сцены". Updating the DB table
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public void RegisterScene(string updateStringJson)
         {

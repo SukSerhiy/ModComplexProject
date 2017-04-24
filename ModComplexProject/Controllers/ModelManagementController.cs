@@ -9,9 +9,12 @@ using WorkWithDb;
 
 namespace ModComplexProject.Controllers
 {
+    /// <summary>
+    /// Menu item "Управление моделями"
+    /// </summary>
+    /// <returns></returns>
     public class ModelManagementController : Controller
     {
-        //Управление моделями
         public ActionResult Index()
         {
             Select s = new Select("Model");

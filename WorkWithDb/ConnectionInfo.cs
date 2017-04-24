@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WorkWithDb
 {
+    /// <summary>
+    /// Connection to DB
+    /// </summary>
     internal class ConnectionInfo
     {
         internal static string connectionString { get; }
